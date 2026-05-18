@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d0ofddgtb6ulb"]
+[gd_scene format=3 uid="uid://d4mcvuvm23n6c"]
 
 [ext_resource type="Script" uid="uid://bm5bjv7fnuf3c" path="res://Scripts/player.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dsmw1k3kvv0yt" path="res://Scripts/camera_3d.gd" id="2_8gbba"]
@@ -105,7 +105,7 @@ top_level = true
 metadata/_edit_lock_ = true
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1592389117]
-transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 6.2881966, 5.801145, 16.267736)
+transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 0, 0, 1.0000005, -19.927368, 5.801145, 16.267736)
 script = ExtResource("1_bo1nx")
 
 [node name="Mesh" type="Node3D" parent="Player" unique_id=1598959905]
