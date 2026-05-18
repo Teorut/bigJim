@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cod1gnm0oowt2"]
+
+[sub_resource type="Environment" id="Environment_gv5m4"]
+background_mode = 1
+background_color = Color(0.6997834, 0.9921172, 0.9990962, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
+size = Vector3(20, 0.1, 20)
+
+[node name="world" type="Node3D" unique_id=1616691831]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1692014777]
+environment = SubResource("Environment_gv5m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1821187587]
+mesh = SubResource("BoxMesh_f3sb7")
