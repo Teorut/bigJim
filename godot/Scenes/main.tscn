@@ -5317,7 +5317,7 @@ transform = Transform3D(0.82582295, -0.5639298, 0, 0.56392974, 0.82582295, 0, 0,
 size = Vector3(2.0615234, 0.15, 0.225)
 
 [node name="BikeFront" type="Node3D" parent="Player/Mesh/Bike" unique_id=1357916715]
-transform = Transform3D(0.90630776, 0, -0.42261827, 0, 1, 0, 0.42261827, 0, 0.90630776, 1.1176052, 1.4543219, 0)
+transform = Transform3D(0.9063077, 0, -0.42261824, 0, 1, 0, 0.42261824, 0, 0.9063077, 1.1176052, 1.4543219, 0)
 
 [node name="Wheel" type="MeshInstance3D" parent="Player/Mesh/Bike/BikeFront" unique_id=1138375213]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.29092407, -0.7300339, 0)
@@ -5805,7 +5805,7 @@ mesh = SubResource("ArrayMesh_bo1nx")
 skin = SubResource("Skin_8gbba")
 
 [node name="LeftLeg" type="SkeletonIK3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=1664266589]
-transform = Transform3D(-0.98159283, -0.1644166, -0.09716969, -0.058020387, -0.22801486, 0.97192717, -0.18195732, 0.95967466, 0.21427803, 18.957336, 33.069, 28.766418)
+transform = Transform3D(-0.98159283, -0.16441658, -0.09716967, -0.058020383, -0.22801487, 0.97192717, -0.18195732, 0.9596745, 0.214278, 18.957333, 33.069, 28.766418)
 root_bone = &"mixamorig_LeftUpLeg"
 tip_bone = &"mixamorig_LeftFoot"
 override_tip_basis = false
@@ -5814,7 +5814,7 @@ magnet = Vector3(31.43, 500, 350)
 target_node = NodePath("../../../Pedals/LPedal")
 
 [node name="RightLeg" type="SkeletonIK3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=246384256]
-transform = Transform3D(-0.98159283, -0.16441661, -0.09716971, 0.009140308, -0.548645, 0.83600533, -0.19076504, 0.81972873, 0.5400489, -18.957, 33.069, 28.766)
+transform = Transform3D(-0.98159283, -0.16441664, -0.09716971, 0.009140313, -0.54864514, 0.8360052, -0.19076504, 0.81972873, 0.5400489, -18.956999, 33.069, 28.765995)
 root_bone = &"mixamorig_RightUpLeg"
 tip_bone = &"mixamorig_RightFoot"
 override_tip_basis = false
@@ -5822,7 +5822,7 @@ use_magnet = true
 magnet = Vector3(31.43, 500, 350)
 target_node = NodePath("../../../Pedals/RPedal")
 
-[node name="SpringBoneSimulator3D2" type="SpringBoneSimulator3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=66659265]
+[node name="TorsoSpring" type="SpringBoneSimulator3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=66659265]
 setting_count = 1
 settings/0/root_bone_name = "mixamorig_Hips"
 settings/0/root_bone = 0
@@ -5975,7 +5975,7 @@ settings/0/enable_all_child_collisions = false
 settings/0/collision_count = 0
 
 [node name="RightArm" type="SkeletonIK3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=453045238]
-transform = Transform3D(-0.98159283, -0.1644166, -0.09716971, 0.009140308, -0.548645, 0.83600533, -0.19076504, 0.81972873, 0.5400489, -18.95697, 33.069, 28.766052)
+transform = Transform3D(-0.98159283, -0.1644166, -0.09716971, 0.009140313, -0.548645, 0.8360052, -0.19076504, 0.81972873, 0.5400489, -18.956972, 33.069008, 28.766048)
 root_bone = &"mixamorig_RightArm"
 tip_bone = &"mixamorig_RightHand"
 override_tip_basis = false
@@ -5984,7 +5984,7 @@ magnet = Vector3(-150, 0, 0)
 target_node = NodePath("../../../Bike/BikeFront/RightHand")
 
 [node name="LeftArm" type="SkeletonIK3D" parent="Player/Mesh/Player/Skeleton3D" unique_id=2050854249]
-transform = Transform3D(-0.98159283, -0.1644166, -0.09716971, 0.009140308, -0.548645, 0.83600533, -0.19076504, 0.81972873, 0.5400489, -18.95697, 33.069, 28.766052)
+transform = Transform3D(-0.98159283, -0.1644166, -0.09716971, 0.009140313, -0.548645, 0.8360052, -0.19076504, 0.81972873, 0.5400489, -18.956972, 33.069008, 28.766048)
 root_bone = &"mixamorig_LeftArm"
 tip_bone = &"mixamorig_LeftHand"
 override_tip_basis = false
@@ -5994,7 +5994,7 @@ target_node = NodePath("../../../Bike/BikeFront/LeftHand")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Mesh/Player" unique_id=2033549775]
 libraries/ = SubResource("AnimationLibrary_jjvhh")
-blend_times = [&"Idle", &"Idle", 0.7, &"Idle", &"Stopped", 0.7, &"Idle", &"TurnLeft", 0.7, &"Idle", &"TurnRight", 0.7, &"Stopped", &"Idle", 0.7, &"Stopped", &"Stopped", 0.7, &"Stopped", &"TurnLeft", 0.7, &"Stopped", &"TurnRight", 0.7, &"TurnLeft", &"Idle", 0.7, &"TurnLeft", &"Stopped", 0.7, &"TurnLeft", &"TurnLeft", 0.7, &"TurnLeft", &"TurnRight", 0.7, &"TurnRight", &"Idle", 0.7, &"TurnRight", &"Stopped", 0.7, &"TurnRight", &"TurnLeft", 0.7, &"TurnRight", &"TurnRight", 0.7]
+blend_times = [&"Idle", &"Idle", 1.5, &"Idle", &"Stopped", 1.5, &"Idle", &"TurnLeft", 1.5, &"Idle", &"TurnRight", 1.5, &"Stopped", &"Idle", 0.7, &"Stopped", &"Stopped", 0.7, &"Stopped", &"TurnLeft", 0.7, &"Stopped", &"TurnRight", 0.7, &"TurnLeft", &"Idle", 1.5, &"TurnLeft", &"Stopped", 1.5, &"TurnLeft", &"TurnLeft", 1.5, &"TurnLeft", &"TurnRight", 1.5, &"TurnRight", &"Idle", 1.5, &"TurnRight", &"Stopped", 1.5, &"TurnRight", &"TurnLeft", 1.5, &"TurnRight", &"TurnRight", 1.5]
 
 [node name="Pedals" type="Node3D" parent="Player/Mesh" unique_id=1584206447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99734116, 0)
