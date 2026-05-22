@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d4mcvuvm23n6c"]
 
-[ext_resource type="Material" uid="uid://4uif54e5clmp" path="res://materials/sky_day.tres" id="1_8gbba"]
+[ext_resource type="Material" uid="uid://4uif54e5clmp" path="res://materials/sky.tres" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://bm5bjv7fnuf3c" path="res://Scripts/player.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dsmw1k3kvv0yt" path="res://Scripts/camera_3d.gd" id="2_8gbba"]
 

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var back_ray: RayCast3D = $BackRay
 @onready var middle_ray: RayCast3D = $MiddleRay
 @onready var pedals: Node3D = $Mesh/Pedals
-@onready var skies: Array = [preload("res://materials/sky_day.tres"), preload("res://materials/sky_evening.tres")]
+@onready var sky = preload("res://materials/sky.tres")
 
 var rotation_speed = 20
 var speed = 10
@@ -106,7 +106,11 @@ func updateSky(delta: float):
 	var sun = $"../DirectionalLight3D"
 	if position.x > 10 and sun.rotation.x < 0:
 		sun.rotate_x(0.05 / PI)
-		material.set_material(skies[1])
+		sky.sky_top_color = "703da7"
+		sky.sky_horizon_color = "d19c52"
+		sky.sky_curve = 0.22735753655434
 	elif position.x <= 10 and sun.rotation.x > -PI / 3:
 		sun.rotate_x(0.05 / PI)
-		material.set_material(skies[0])
+		sky.sky_top_color = "62748c"
+		sky.sky_horizon_color = "a5a7ab"
+		sky.sky_curve = 0.150
