@@ -1,15 +1,21 @@
 [gd_scene format=4 uid="uid://d4mcvuvm23n6c"]
 
-[ext_resource type="Material" uid="uid://4uif54e5clmp" path="res://materials/sky_day.tres" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://bm5bjv7fnuf3c" path="res://Scripts/player.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dsmw1k3kvv0yt" path="res://Scripts/camera_3d.gd" id="2_8gbba"]
 
-[sub_resource type="Sky" id="Sky_8gbba"]
-sky_material = ExtResource("1_8gbba")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
+sky_top_color = Color(0.41394445, 0.3926745, 0.75538784, 1)
+sky_horizon_color = Color(0.75930005, 0.6282844, 0.49327284, 1)
+sky_curve = 0.1979262
 
-[sub_resource type="Environment" id="Environment_bo1nx"]
+[sub_resource type="Sky" id="Sky_8gbba"]
+sky_material = SubResource("ProceduralSkyMaterial_bo1nx")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
 background_mode = 2
 sky = SubResource("Sky_8gbba")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_lquwl"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -5261,11 +5267,11 @@ _data = {
 [node name="Node3D" type="Node3D" unique_id=1274202589]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1677522455]
-transform = Transform3D(-0.8660254, -0.43301272, 0.25, 2.7805948e-08, 0.49999997, 0.86602545, -0.5, 0.75, -0.43301266, 0, -13.545574, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, -13.545574, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1384164691]
-environment = SubResource("Environment_bo1nx")
+environment = SubResource("Environment_1bvp3")
 
 [node name="Terrain3D" type="Terrain3D" parent="." unique_id=297248770]
 data_directory = "res://addons/terrainData"
@@ -6018,7 +6024,7 @@ target_position = Vector3(0, -50, 0)
 transform = Transform3D(-4.371139e-08, 0.2923717, -0.9563048, 0, 0.9563048, 0.2923717, 1, 1.2779973e-08, -4.180141e-08, -7.537941, 6.1590667, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1284843364 node_paths=PackedStringArray("target")]
-transform = Transform3D(-4.1800305e-08, 0.29245532, -0.9562792, 1.27836195e-08, 0.9562792, 0.29245532, 1, 1.2434498e-14, -4.3711402e-08, -1.2497482, 11.960212, 16.267736)
+transform = Transform3D(-8.504469e-09, -0.98089063, -0.1945598, -4.2876103e-08, 0.1945598, -0.98089063, 1, 1.1585152e-14, -4.3711402e-08, -1.2497482, 11.960212, 16.267736)
 fov = 101.0
 script = ExtResource("2_8gbba")
 target = NodePath("../Player/CameraPoint")

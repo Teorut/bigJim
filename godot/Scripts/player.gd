@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var back_ray: RayCast3D = $BackRay
 @onready var middle_ray: RayCast3D = $MiddleRay
 @onready var pedals: Node3D = $Mesh/Pedals
+@onready var skies: Array = [preload("res://materials/sky_day.tres"), preload("res://materials/sky_evening.tres")]
 
 var rotation_speed = 20
 var speed = 10
@@ -19,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	balancePlayer(delta)
 	movePlayer(delta)
 	bikeMomentum(delta)
+	updateSky(delta)
 
 func bikeMomentum(delta: float):
 	var roll = asin(global_basis.x.y)
@@ -98,3 +100,13 @@ func movePlayer(delta: float):
 			
 			$Mesh/Player/Skeleton3D/RightLeg.influence = 0
 			$Mesh/Player/Skeleton3D/RightArm.influence = 0
+
+func updateSky(delta: float):
+	var material = $"../WorldEnvironment".get_environment().get_sky()
+	var sun = $"../DirectionalLight3D"
+	if position.x > 10 and sun.rotation.x < 0:
+		sun.rotate_x(0.05 / PI)
+		material.set_material(skies[1])
+	elif position.x <= 10 and sun.rotation.x > -PI / 3:
+		sun.rotate_x(0.05 / PI)
+		material.set_material(skies[0])
