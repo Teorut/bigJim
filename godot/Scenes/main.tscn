@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://d4mcvuvm23n6c"]
 
+[ext_resource type="Texture2D" uid="uid://bp1x8y3u8hsfq" path="res://Textures/Moss.png" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://bm5bjv7fnuf3c" path="res://Scripts/player.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dsmw1k3kvv0yt" path="res://Scripts/camera_3d.gd" id="2_8gbba"]
+[ext_resource type="Texture2D" uid="uid://c0p0oykuq503w" path="res://Textures/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg" id="2_jjvhh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -56,7 +58,6 @@ _shader_parameters = {
 &"noise_texture": SubResource("NoiseTexture2D_272bh"),
 &"projection_threshold": 0.8
 }
-show_checkered = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
 transparency = 4
@@ -76,8 +77,26 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_kry3j"]
+name = "Moss"
+albedo_texture = ExtResource("1_8gbba")
+normal_texture = ExtResource("2_jjvhh")
+normal_depth = 1.0
+detiling_rotation = 0.065
+detiling_shift = 0.155
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_21xkr"]
+name = "Moss"
+id = 1
+albedo_color = Color(0.8372859, 0.7475434, 0.57412136, 1)
+albedo_texture = ExtResource("1_8gbba")
+normal_texture = ExtResource("2_jjvhh")
+detiling_rotation = 0.2
+detiling_shift = 0.41
+
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_efxa6"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_4c57u")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_kry3j"), SubResource("Terrain3DTextureAsset_21xkr")])
 
 [sub_resource type="BoxMesh" id="BoxMesh_dg77c"]
 size = Vector3(4.12, 1.83, 0.33)
@@ -5276,7 +5295,6 @@ environment = SubResource("Environment_1bvp3")
 data_directory = "res://addons/terrainData"
 material = SubResource("Terrain3DMaterial_5vw27")
 assets = SubResource("Terrain3DAssets_efxa6")
-show_checkered = true
 top_level = true
 metadata/_edit_lock_ = true
 

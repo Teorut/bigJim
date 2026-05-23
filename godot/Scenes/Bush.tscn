@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ctn3bmt3ontq4"]
+
+[ext_resource type="Texture2D" uid="uid://b016lde4vqu47" path="res://Textures/Bush.png" id="1_1oik2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jjvhh"]
+radial_segments = 5
+rings = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kry3j"]
+transparency = 1
+albedo_texture = ExtResource("1_1oik2")
+uv1_triplanar = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1289456442]
+mesh = SubResource("SphereMesh_jjvhh")
+surface_material_override/0 = SubResource("StandardMaterial3D_kry3j")
