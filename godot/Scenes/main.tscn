@@ -5263,7 +5263,6 @@ _data = {
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1677522455]
 transform = Transform3D(-0.8660254, -4.3711392e-08, -0.50000006, 0, -1, 8.742278e-08, -0.50000006, 7.5710346e-08, 0.8660254, 0, -13.545574, 0)
 shadow_enabled = true
-sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1384164691]
 environment = SubResource("Environment_bo1nx")
