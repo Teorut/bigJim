@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bm5bjv7fnuf3c" path="res://Scripts/player.gd" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://dsmw1k3kvv0yt" path="res://Scripts/camera_3d.gd" id="2_8gbba"]
 [ext_resource type="ArrayMesh" uid="uid://bv54g1e1kjvk4" path="res://Models/Objects/pine_tree.obj" id="3_8gbba"]
-[ext_resource type="Script" uid="uid://cmclbqsd10t2s" path="res://Scenes/cloud_prototype.gd" id="4_jjvhh"]
 [ext_resource type="Script" uid="uid://c8sdm874aefbq" path="res://Scenes/wind_direction.gd" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://b57tl3i81bkqe" path="res://Scenes/cloud.gd" id="6_21xkr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -5279,8 +5279,85 @@ albedo_color = Color(0.32906246, 0.75294644, 0.7209864, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_yf5fn")
 
-[sub_resource type="BoxMesh" id="BoxMesh_kry3j"]
-size = Vector3(31.623047, 1, 32.1933)
+[sub_resource type="Shader" id="Shader_kry3j"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+// Adding parameter to change the materials offset
+uniform vec2 direction_offset = vec2(0, 0);
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV + direction_offset;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_kry3j"]
+offsets = PackedFloat32Array(0.2970297, 0.6732673)
+colors = PackedColorArray(0.54676837, 0.74175173, 0.9936498, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kry3j"]
+noise_type = 2
+frequency = 0.0132
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kry3j"]
+noise = SubResource("FastNoiseLite_kry3j")
+color_ramp = SubResource("Gradient_kry3j")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21xkr"]
+render_priority = 0
+shader = SubResource("Shader_kry3j")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_kry3j")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/direction_offset = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
 
 [node name="Node3D" type="Node3D" unique_id=1274202589]
 
@@ -6064,11 +6141,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11871958, 1.4101515, -0.21
 shape = SubResource("ConcavePolygonShape3D_8gbba")
 
 [node name="wind_direction" type="MeshInstance3D" parent="." unique_id=1270932664]
-transform = Transform3D(0.6416385, 0.76700693, -7.658108e-09, -1.5529405e-22, -4.3711378e-08, -0.22841655, -0.767007, 0.64163846, -6.4063785e-09, 0, 2.031719, 4.7041006)
+transform = Transform3D(0.9991442, -0.04135841, 4.1294124e-10, 3.3916495e-15, -4.3711378e-08, -0.22841653, 0.041358292, 0.9991442, -9.97586e-09, 0, 2.031719, 4.7041006)
 mesh = SubResource("PrismMesh_g4v7s")
 script = ExtResource("5_kry3j")
 
-[node name="cloud_prototype" type="MeshInstance3D" parent="." unique_id=1564540502]
-transform = Transform3D(0.99999994, -3.5527137e-15, -3.5527137e-15, 3.5527137e-15, 0.99999994, 0, 3.5527137e-15, 0, 0.99999994, -15.34281, 36.10842, 22.334099)
-mesh = SubResource("BoxMesh_kry3j")
-script = ExtResource("4_jjvhh")
+[node name="cloud" type="MeshInstance3D" parent="." unique_id=723689126]
+transform = Transform3D(41.458447, -3.5527137e-15, -1.3644301e-13, 1.4729e-13, 0.99999994, 0, 1.4729e-13, 0, 38.40529, 0.2912886, 27.7757, 10.120239)
+material_override = SubResource("ShaderMaterial_21xkr")
+mesh = SubResource("PlaneMesh_g4v7s")
+skeleton = NodePath("")
+script = ExtResource("6_21xkr")
