@@ -4,10 +4,26 @@ extends CharacterBody3D
 @onready var back_ray: RayCast3D = $BackRay
 @onready var middle_ray: RayCast3D = $MiddleRay
 @onready var pedals: Node3D = $Mesh/Pedals
+@onready var sky = preload("res://materials/sky.tres")
 
 var rotation_speed = 20
 var speed = 10
 var lerped_speed = 0
+var time = 0
+var time_grid = [
+	[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+	[9, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9],
+	[9, 8, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9],
+	[9, 8, 7, 6, 6, 6, 6, 6, 6, 7, 8, 9],
+	[9, 8, 7, 6, 5, 5, 5, 5, 6, 7, 8, 9],
+	[9, 8, 7, 6, 5, 0, 0, 5, 6, 7, 8, 9],
+	[9, 8, 7, 6, 5, 0, 0, 5, 6, 7, 8, 9],
+	[9, 8, 7, 6, 5, 5, 5, 5, 6, 7, 8, 9],
+	[9, 8, 7, 6, 6, 6, 6, 6, 6, 7, 8, 9],
+	[9, 8, 7, 7, 7, 7, 7, 7, 7, 7, 8, 9],
+	[9, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9],
+	[9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+]
 
 func _ready() -> void:
 	$Mesh/Player/Skeleton3D/LeftLeg.start()
@@ -19,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	balancePlayer(delta)
 	movePlayer(delta)
 	bikeMomentum(delta)
+	updateSky(delta)
 
 func bikeMomentum(delta: float):
 	var roll = asin(global_basis.x.y)
@@ -98,3 +115,26 @@ func movePlayer(delta: float):
 			
 			$Mesh/Player/Skeleton3D/RightLeg.influence = 0
 			$Mesh/Player/Skeleton3D/RightArm.influence = 0
+
+func updateSky(delta: float):
+	var grid_position = floor(position / 10) + Vector3(6, 0, 6)
+	
+	if (len(time_grid) > grid_position.x) and grid_position.x > 0:
+		if (len(time_grid[grid_position.x]) > grid_position.z and grid_position.z > 0):
+			time = time_grid[grid_position.x][grid_position.z]
+	
+	var material = $"../WorldEnvironment".get_environment().get_sky()
+	var sun = $"../DirectionalLight3D"
+	
+	# the sun's rotation around the x-axis at dawn
+	# (in radians, time = 0 is dawn)
+	var time_dawn = PI
+	
+	# how many different times of day can be stepped to
+	var time_modes = 12
+	
+	# the rotation one step in time equates to(in radians)
+	var time_step = PI / time_modes
+	
+	#set the sun's rotation based on how far away from midnight it is
+	sun.rotation.x = lerp(sun.rotation.x, time_dawn + (time * time_step), 0.01)
