@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0p0oykuq503w"
-path.s3tc="res://.godot/imported/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg-b7e8be51d1a3ce367b80829021d877ba.s3tc.ctex"
+uid="uid://d3mlx1isk6g00"
+path.s3tc="res://.godot/imported/Cliffside.png-b3c3ae976f35765cb41f23803225f96b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg"
-dest_files=["res://.godot/imported/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg-b7e8be51d1a3ce367b80829021d877ba.s3tc.ctex"]
+source_file="res://Textures/Cliffside.png"
+dest_files=["res://.godot/imported/Cliffside.png-b3c3ae976f35765cb41f23803225f96b.s3tc.ctex"]
 
 [params]
 
@@ -22,12 +22,12 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Textures/Cliffside.png"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

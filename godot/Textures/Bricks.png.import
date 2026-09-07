@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0p0oykuq503w"
-path.s3tc="res://.godot/imported/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg-b7e8be51d1a3ce367b80829021d877ba.s3tc.ctex"
+uid="uid://phvab0hlswsc"
+path.s3tc="res://.godot/imported/Bricks.png-e7c5ecec193106f7145704d737a9ebe6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg"
-dest_files=["res://.godot/imported/everytexture.com-stock-nature-grass-texture-00008-normal-1024.jpg-b7e8be51d1a3ce367b80829021d877ba.s3tc.ctex"]
+source_file="res://Textures/Bricks.png"
+dest_files=["res://.godot/imported/Bricks.png-e7c5ecec193106f7145704d737a9ebe6.s3tc.ctex"]
 
 [params]
 
